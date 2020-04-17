@@ -1,9 +1,13 @@
 <template>
-  <div class="home">
-    <h1>Welcome</h1>
-    <Blog v-for="blog in blogs" :blogData='blog' :key="blog._id"></Blog>
-    <p v-if="$auth.isAuthenticated">Show if isAuth</p>
-    <createBlog v-if="$auth.isAuthenticated"></createBlog>
+  <div class="home container-fluid">
+    <div class="row">
+      <createBlog v-if="$auth.isAuthenticated"></createBlog>
+    </div>
+    <div class="row">
+      <div class="card-columns">
+        <blog v-for="blog in blogs" :blogData='blog' :key="blog._id"></blog>
+      </div>
+    </div>
   </div>
 </template>
 

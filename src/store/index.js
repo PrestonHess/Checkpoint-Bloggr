@@ -8,14 +8,18 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     profile: {},
-    blogs: []
+    blogs: [],
+    activeBlog: {}
   },
   mutations: {
     setProfile(state, profile) {
       state.profile = profile;
     },
     setBlogs(state, blogs) {
-      state.profile = blogs
+      state.blogs = blogs;
+    },
+    setActiveBlog(state, activeBlog) {
+      state.activeBlog = activeBlog;
     }
   },
   actions: {
@@ -40,6 +44,24 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+    async postBlog({dispatch, commit}, newBlog) {
+      try {
+        let res = await api.post('blogs', newBlog)
+        dispatch('getBlogs')
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async getBlog({dispatch, commit}, blogId) {
+      try {
+        let res = await api.get('blogs/' + blogId)
+        commit('setActiveBlog', res.data);
+      } catch (error) {
+        console.error(error)
+      }
     }
   },
 });
+
+"Roses are Red, Violets are Blue. Unexpected '{' on line 32. "

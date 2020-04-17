@@ -3,7 +3,7 @@
     <!-- Button trigger modal -->
     <button
       type="button"
-      class="btn btn-primary btn-lg"
+      class="btn btn-primary btn-lg m-2"
       data-toggle="modal"
       data-target="#modelId"
     >Post Blog</button>
@@ -27,7 +27,7 @@
           </div>
 
           <div class="modal-body">
-            <div class="form" id="form" @submit.prevent="createBlog()">
+            <form @submit.prevent="createBlog()">
               <div class="form-group">
                 <input
                   type="text"
@@ -61,11 +61,11 @@
                   v-model="newBlog.imgUrl"
                 />
               </div>
-              <button type="sumbit" class="btn btn-primary">Save</button>
-            </div>
+              <button type="sumbit" class="btn btn-primary mx-1">Publish</button>
+              <button type="button" class="btn btn-secondary mx-1" data-dismiss="modal">Close</button>
+            </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     createBlog() {
-      console.log(this.newBlog);
+      this.$store.dispatch('postBlog', this.newBlog)
       this.newBlog = {};
     }
   }
