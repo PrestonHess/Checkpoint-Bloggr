@@ -1,18 +1,33 @@
 <template>
-  <div class="about text-center">
+  <div class="about container-fluid text-center">
     <h1>Welcome {{ profile.name }}</h1>
     <img class="rounded" :src="profile.picture" alt="" />
     <p>{{ profile.email }}</p>
+    <h5>Published Blogs</h5>
+    <create-blog></create-blog>
+    <MyBlog v-for="blog in myBlogs" :blogData="blog" :key="blog._id"></MyBlog>
   </div>
 </template>
 
 <script>
+import createBlog from '../components/createBlog.vue'
+import MyBlog from '../components/MyBlog.vue'
 export default {
   name: "Profile",
+  mounted() {
+    this.$store.dispatch('getMyBlogs')
+  },
   computed: {
     profile() {
       return this.$store.state.profile;
+    },
+    myBlogs() {
+      return this.$store.state.myBlogs;
     }
+  },
+  components: {
+    MyBlog,
+    createBlog
   }
 };
 </script>

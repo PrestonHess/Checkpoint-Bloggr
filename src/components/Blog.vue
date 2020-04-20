@@ -1,7 +1,7 @@
 <template>
   <div class="blog">
     <div class="card m-3" @click="selectBlog()">
-    <img class="card-img-top img-fluid" :src="blogData.imgUrl">
+    <!-- <img class="card-img-top img-fluid" :src="blogData.imgUrl"> -->
     <div class="card-body" >
       <h5 class="card-title">{{blogData.title}}</h5>
       <p class="card-text">{{blogData.body}}</p>

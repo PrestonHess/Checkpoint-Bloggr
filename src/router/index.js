@@ -24,7 +24,7 @@ const routes = [
     path: "/blog/:blogId",
     name: 'BlogDetails',
     // @ts-ignore
-    component: () => import(/**webpackChunkName: "blog-details"*/ '../pages/BlogDetails.vue')
+    component: () => import(/*webpackChunkName: "blog-details"*/ '../pages/BlogDetails.vue')
   }
 ];
 

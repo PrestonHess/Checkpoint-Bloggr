@@ -9,7 +9,8 @@ export default new Vuex.Store({
   state: {
     profile: {},
     blogs: [],
-    activeBlog: {}
+    activeBlog: {},
+    myBlogs: []
   },
   mutations: {
     setProfile(state, profile) {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     },
     setActiveBlog(state, activeBlog) {
       state.activeBlog = activeBlog;
+    },
+    setMyBlogs(state, myBlogData) {
+      state.myBlogs = myBlogData
     }
   },
   actions: {
@@ -49,6 +53,7 @@ export default new Vuex.Store({
       try {
         let res = await api.post('blogs', newBlog)
         dispatch('getBlogs')
+        dispatch('getMyBlogs')
       } catch (error) {
         console.error(error)
       }
@@ -60,8 +65,56 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+    async getMyBlogs({dispatch, commit}) {
+      try {
+        let res = await api.get('profile/blogs')
+        commit('setMyBlogs', res.data)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async addComment({dispatch, commit}, newComment) {
+      try {
+        await api.post('comments', newComment)
+        dispatch('getBlog', newComment.blogId)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async deleteComment({dispatch, commit}, comment) {
+      try {
+        await api.delete('comments/' + comment._id)
+        dispatch('getBlog', comment.blogId)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async editComment({dispatch, commit}, comment) {
+      try {
+        await api.put('comments/' + comment._id, comment)
+        dispatch('getBlog')
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async editBlog({dispatch, commit}, blogData) {
+      try {
+        await api.put('blogs/' + blogData._id, blogData)
+        dispatch('getMyBlogs')
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async deleteBlog({dispatch, commit}, blogId) {
+      try {
+        await api.delete('blogs/' + blogId)
+        dispatch('getMyBlogs')
+      } catch (error) {
+        console.error(error)
+      }
     }
   },
 });
 
-"Roses are Red, Violets are Blue. Unexpected '{' on line 32. "
+// "Roses are Red, Violets are Blue. Unexpected '{' on line 32. "
