@@ -14,7 +14,7 @@
         />
       </div>
       <div>
-        <h3 style="color: green">loggrrr</h3>
+        <h3 style="color: #41b883">loggrrr</h3>
       </div>
     </router-link>
     <button

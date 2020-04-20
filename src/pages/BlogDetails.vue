@@ -1,7 +1,7 @@
 <template>
   <div class="blog-details container-fluid">
     <div class="row justify-content-center">
-      <div class="col-10 bg-light rounded my-2">
+      <div class="col-8 bg-light rounded my-2">
         <img :src="blog.imgUrl" class="rounded my-2 shadow img-fluid" />
         <h3>{{blog.title}}</h3>
         <small class="text-muted">Plublished: {{blog.createdAt}}</small>
