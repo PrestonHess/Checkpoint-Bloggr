@@ -3,8 +3,8 @@
     <h1>Welcome {{ profile.name }}</h1>
     <img class="rounded" :src="profile.picture" alt="" />
     <p>{{ profile.email }}</p>
-    <h5>Published Blogs</h5>
     <create-blog></create-blog>
+    <h5>Published Blogs</h5>
     <MyBlog v-for="blog in myBlogs" :blogData="blog" :key="blog._id"></MyBlog>
   </div>
 </template>

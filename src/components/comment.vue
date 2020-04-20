@@ -6,13 +6,13 @@
         <div class="form-group">
           <input type="text"
             class="form-control" name="body" v-model="commentData.body" aria-describedby="helpId">
-          <button type="submit" @click.prevent="editComment()">Save</button>
+          <button type="submit" class="btn btn-success" @click.prevent="editComment()">Save</button>
         </div>
       </form>
     </div>
     <div v-if="commentData.creatorEmail == this.$auth.userInfo.email">
     <span><button type="button" class="btn btn-danger" @click.prevent="deleteComment()">Delete</button></span>
-    <button type="button" class="btn btn-danger" @click="editing = !editing">Edit</button>
+    <button type="button" class="btn btn-warning" @click="editing = !editing">Edit</button>
     </div>
   </div>
 </template>
